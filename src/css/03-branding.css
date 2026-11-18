@@ -1,0 +1,188 @@
+
+/* شخصی‌سازی: لوگو و نام شرکت QC (سربرگ برنامه، سربرگ گزارش، کادر تب «شخصی‌سازی») */
+/* ---------- بخش شخصی‌سازی لوگو و نام شرکت QC ---------- */
+header.top {
+  position: relative;
+  min-height: 50px;
+}
+.header-logo-center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 48px;
+  max-width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2;
+}
+.header-logo-center img {
+  max-height: 46px;
+  max-width: 150px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+@media (max-width: 680px) {
+  .header-logo-center {
+    position: static;
+    height: 40px;
+    max-width: 120px;
+    margin: 2px auto;
+  }
+  .header-logo-center img {
+    max-height: 38px;
+    max-width: 120px;
+  }
+}
+
+/* سربرگ گزارش نهایی (#reportSheet .rtitle) با جایگاه لوگو بدون برهم زدن تراز مرکزی */
+#reportSheet .rtitle {
+  position: relative;
+}
+#reportSheet .rtitle.has-qc-logo {
+  padding-left: 92px;
+  padding-right: 92px;
+  min-height: 74px;
+}
+.report-logo-slot {
+  position: absolute;
+  left: 16px;
+  top: 0;
+  bottom: 0;
+  width: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.report-logo-slot img {
+  max-height: 54px;
+  max-width: 68px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+@media (max-width: 560px) {
+  #reportSheet .rtitle.has-qc-logo {
+    padding-left: 68px;
+    padding-right: 68px;
+  }
+  .report-logo-slot {
+    left: 8px;
+    width: 52px;
+  }
+  .report-logo-slot img {
+    max-height: 42px;
+    max-width: 52px;
+  }
+}
+
+/* کادر شخصی‌سازی در تب شخصی‌سازی */
+.qc-custom-panel {
+  background: #f8fbfc;
+  border: 1.5px solid var(--ui-line);
+  border-radius: var(--r-md);
+  padding: 16px 18px;
+  margin-top: 20px;
+}
+body[data-theme="dark"] .qc-custom-panel {
+  background: #172b36;
+  border-color: #3b505c;
+}
+.qc-custom-panel .qc-panel-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--ui-ink);
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.qc-row-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.qc-logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.qc-logo-preview {
+  width: 74px;
+  height: 74px;
+  border: 1.5px dashed var(--ui-field);
+  border-radius: var(--r-sm);
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+body[data-theme="dark"] .qc-logo-preview {
+  background: #263842;
+  border-color: #4a606c;
+}
+.qc-logo-preview img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+.qc-logo-preview .qc-no-logo {
+  font-size: 10.5px;
+  color: var(--ink-soft);
+  text-align: center;
+  line-height: 1.4;
+}
+.qc-logo-btn-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.btn-sm-action {
+  padding: 8px 14px;
+  font-size: 12.5px;
+  min-height: 38px;
+}
+.btn-danger-soft {
+  background: #fdecea;
+  color: var(--err);
+  border: 1.5px solid #f5c2be;
+  padding: 8px 14px;
+  font-size: 12.5px;
+  min-height: 38px;
+  border-radius: var(--r-sm);
+  font-weight: 700;
+  cursor: pointer;
+  transition: .15s;
+}
+.btn-danger-soft:hover:not(:disabled) {
+  background: #f9d5d0;
+}
+.btn-danger-soft:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.qc-size-note {
+  font-size: 11px;
+  color: var(--amber);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
