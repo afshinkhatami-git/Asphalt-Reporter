@@ -1,0 +1,287 @@
+{
+ "parts": [
+  {
+   "kind": "html",
+   "file": "html/00-fragment.html"
+  },
+  {
+   "kind": "style",
+   "open": "<style>",
+   "file": "css/00-fonts-vazirmatn.css"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "style",
+   "open": "<style>",
+   "file": "css/01-base.css"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "style",
+   "open": "<style>",
+   "file": "css/02-theme-control-room.css"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "style",
+   "open": "<style>",
+   "file": "css/03-branding.css"
+  },
+  {
+   "kind": "text",
+   "value": "\n\n"
+  },
+  {
+   "kind": "style",
+   "open": "<style id=\"technician-import-missing-style\">",
+   "file": "css/04-technician-import-missing.css"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "style",
+   "open": "<style id=\"design-tab-layout-refinement\">",
+   "file": "css/05-design-tab-layout.css"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "style",
+   "open": "<style id=\"dark-theme-readability-fixes\">",
+   "file": "css/06-dark-theme-fixes.css"
+  },
+  {
+   "kind": "text",
+   "value": "\n\n"
+  },
+  {
+   "kind": "style",
+   "open": "<style>",
+   "file": "css/07-mobile-sample-weights.css"
+  },
+  {
+   "kind": "html",
+   "file": "html/01-fragment.html"
+  },
+  {
+   "kind": "script",
+   "open": "<script type=\"text/plain\" id=\"html2canvas-lib-src\">",
+   "file": "vendor/html2canvas-1.4.1.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/00-state-lazyload.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/01-state.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/02-helpers.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/03-field-types-precision.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/04-calc-engine.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/05-form-helpers.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/06-acceptance-ranges.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/07-step-definitions.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/08-step-about.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/09-step-welcome.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/10-step-0-project.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/11-design-keys.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/12-step-1-design.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/13-step-2-marshall-sg.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/14-step-3-bitumen.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/15-step-4.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/16-report.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/17-step-5.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/18-qc-branding.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/19-step-customize.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/20-conformity-tab.js"
+  },
+  {
+   "kind": "text",
+   "value": "\n"
+  },
+  {
+   "kind": "script",
+   "open": "<script>",
+   "file": "js/21-main-nav.js"
+  },
+  {
+   "kind": "html",
+   "file": "html/02-fragment.html"
+  }
+ ]
+}

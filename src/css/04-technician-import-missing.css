@@ -1,0 +1,10 @@
+
+.field.import-missing input, .field.import-missing textarea, .field.import-missing select,
+td.fcell.import-missing input {
+  border: 1.5px solid #d58a32 !important;
+  background: #fff8ed !important;
+  box-shadow: 0 0 0 2px rgba(213,138,50,.10) !important;
+}
+.field.import-missing label { color: #9a5b16 !important; }
+td.fcell.import-missing { background: #fff8ed !important; }
+

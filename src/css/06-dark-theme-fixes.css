@@ -1,0 +1,83 @@
+
+/* ===================================================================
+   اصلاح خوانایی تم تیره — فقط ظاهر صفحه؛ تم روشن و ظاهر برگه‌ی گزارش دست‌نخورده
+   =================================================================== */
+
+/* ۱) فیلدهای ناقص پس از دریافت اطلاعات تکنسین QC (کادرهای کرم/سفید قبلی) */
+body[data-theme="dark"] .field.import-missing input,
+body[data-theme="dark"] .field.import-missing textarea,
+body[data-theme="dark"] .field.import-missing select,
+body[data-theme="dark"] td.fcell.import-missing input{
+  background:#3a2c1f !important;
+  border-color:#b07a3a !important;
+  color:#f6d9ab !important;
+  box-shadow:0 0 0 2px rgba(211,154,94,.14) !important;
+}
+body[data-theme="dark"] .field.import-missing label{color:#e6b26a !important;}
+body[data-theme="dark"] td.fcell.import-missing{background:#3a2c1f !important;color:#f6d9ab;}
+
+/* ۲) تب «تطبیق با معیارها»: کادرهای روشن به سطوح تیره‌ی هم‌پالت تبدیل شوند */
+body[data-theme="dark"] .cf-summary.cf-ok{background:#1e3a2c;border-color:#3f6b53;color:#a9dcbd;}
+body[data-theme="dark"] .cf-summary.cf-bad{background:#3a2523;border-color:#6e4038;color:#ffbdb0;}
+body[data-theme="dark"] .cf-go{background:#263842;border-color:#4a606c;color:#d7e5ec;}
+body[data-theme="dark"] .cf-go:hover{border-color:var(--ui-amber);color:#fff;}
+body[data-theme="dark"] .cf-item{background:#33241f;border-color:#5d3b33;border-right-color:var(--err);color:#ffd3c9;}
+body[data-theme="dark"] .cf-tbl tr.cf-row-bad td{background:#3a2523;color:#ff9c8c;}
+body[data-theme="dark"] .cf-tbl tr.cf-row-ok td.cf-st{color:var(--ok);}
+body[data-theme="dark"] .cf-gmm div{background:#263842;border-color:#3b505c;color:#aab9c2;}
+body[data-theme="dark"] .cf-gmm b{color:#e7edf0;}
+
+/* ۲.۵) کادر تأیید گزارش نهایی (متن قهوه‌ای روی زمینه‌ی تیره خوانا نبود) */
+body[data-theme="dark"] .confirm-box{background:#3a2c1f;border-color:#c68a45;color:#f6d9ab;}
+body[data-theme="dark"] .confirm-box input[type=checkbox]{accent-color:var(--ui-amber);}
+
+/* ۳) پاورقی «طراحی توسط آکادمی آموزشی لیان» */
+.app-credit{text-align:center;font-size:11px;font-weight:700;font-style:normal;margin-top:6px;color:#1f3d6b;}
+body[data-theme="dark"] .app-credit{color:#f2c98c;}
+
+/* ۴) برگه‌ی گزارش نهایی همیشه مثل کاغذ روشن بماند؛
+      متغیرهای محلی، اثر تم تیره روی متن/پس‌زمینه‌ی برگه را قطع می‌کند */
+#reportSheet{
+  --charcoal:#2b2e33;
+  --ink:#232323;
+  --ink-soft:#5b5f66;
+  --amber-soft:#f3e6d6;
+  --line:#e3e1db;
+  background:#fff;
+  color:#232323;
+}
+#reportSheet .rtable td{border-color:#b9b7b0;}
+
+/* ۵) تب مارشال: فقط رنگ کادرِ گزینه‌ی انتخاب‌شده (پیش‌فرض‌ها: رینگ دیجیتال / بدون موم) متمایز شود */
+.marshall-choice-group .choice.selected{
+  border-color:var(--amber);
+}
+body[data-theme="dark"] .marshall-choice-group .choice.selected{
+  border-color:#d39a5e;
+}
+
+/* ۶) رنگ ثابت و یکسان دکمه‌های فعال در صفحه «شروع» (معادل ردیف اول) + تراز دقیق دو ردیف */
+.choice-group.start-top-choices{
+  margin-bottom:10px;
+}
+.choice.start-choice-top.selected,
+.choice.start-choice-bottom.selected{
+  border:2px solid var(--ui-deep) !important;
+  background:#dce9ef !important;
+  box-shadow:0 0 0 3px rgba(47,85,104,.18) !important;
+}
+.choice.start-choice-top.selected .title,
+.choice.start-choice-bottom.selected .title{
+  color:var(--ui-deep) !important;
+}
+body[data-theme="dark"] .choice.start-choice-top.selected,
+body[data-theme="dark"] .choice.start-choice-bottom.selected{
+  border:2px solid #8bc9e5 !important;
+  background:#2b4a59 !important;
+  box-shadow:0 0 0 3px rgba(139,201,229,.20) !important;
+}
+body[data-theme="dark"] .choice.start-choice-top.selected .title,
+body[data-theme="dark"] .choice.start-choice-bottom.selected .title{
+  color:#ffffff !important;
+}
+

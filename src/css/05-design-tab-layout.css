@@ -1,0 +1,33 @@
+
+/* اصلاح چیدمان تب طرح اختلاط */
+.design-size-select{
+  width:calc(100% + 10px);
+  max-width:calc(100% + 10px);
+  min-height:42px;
+  padding:8px 12px;
+  font-family:'Vazirmatn',sans-serif !important;
+  font-size:13.5px;
+  line-height:1.7;
+  direction:rtl;
+}
+.design-size-select option{
+  font-family:'Vazirmatn',sans-serif !important;
+  font-size:13.5px;
+}
+.design-size-name-row{grid-template-columns:1fr 1fr 1.4fr;align-items:end;}
+.design-size-name-row .field{min-width:0;}
+.design-gsb-pba-row{grid-template-columns:1fr 1fr;align-items:end;margin-top:10px;}
+.design-gsb-pba-row .field{min-width:0;}
+.design-gsb-pba-row .gsb-computed-wrap{margin-top:0 !important;}
+.design-gsb-pba-row .gsb-computed-wrap > div:first-child{min-height:40px;display:flex;align-items:flex-end;line-height:1.55;}
+.design-reference-grid{align-items:stretch;}
+.design-reference-grid .field{min-width:0;}
+.design-reference-grid .field label{min-height:52px;display:flex;flex-direction:column;justify-content:flex-end;line-height:1.55;}
+.design-reference-grid .field label .hint{display:block;margin:2px 0 0;font-size:10.5px;line-height:1.45;}
+@media(max-width:560px){
+  .design-size-name-row,.design-gsb-pba-row{grid-template-columns:1fr;}
+  .design-size-select{width:100%;max-width:100%;}
+  .design-reference-grid .field label{min-height:0;}
+}
+
+

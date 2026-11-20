@@ -1,0 +1,193 @@
+
+/* ===================================================================
+   تم «اتاق کنترل» (نسخه‌ی ملایم) — لایه‌ی ظاهری روی style.css
+   - سرمه‌ای/سبزآبی ملایم + کهربایی؛ همه‌ی باکس‌ها و جدول‌ها گرد‌گوشه
+   - فقط ظاهر عمومی برنامه؛ برگه‌ی گزارش (#reportSheet / .rtable / .rtitle / .report-footer) عمداً دست‌نخورده است
+     و متغیرهای style.css (--charcoal, --amber-soft, --ink, --ink-soft, --line ...) که برگه‌ی گزارش به آن‌ها وابسته است تغییر نکرده‌اند.
+   - کلاس‌های invalid / cross-invalid / noted / field و رنگ خطا (--err) حفظ شده‌اند.
+   =================================================================== */
+:root{
+  --ui-deep:#2f5568;      /* جعبه‌ی نتیجه، انتهای پنل کناری */
+  --ui-mid:#3a6478;       /* ابتدای پنل کناری، دکمه‌ی اصلی */
+  --ui-head:#40697c;      /* سربرگ جدول‌ها */
+  --ui-ink:#27495c;       /* تیترها و برچسب‌ها */
+  --ui-bg:#e7eef0;        /* زمینه‌ی صفحه */
+  --ui-line:#d3dde1;
+  --ui-field:#c6d4d9;
+  --ui-amber:#ffc15e;
+  --r-lg:16px;            /* پنل‌ها و کارت‌ها */
+  --r-md:12px;            /* باکس‌ها، جدول‌ها */
+  --r-sm:10px;            /* ورودی‌ها، دکمه‌ها، آیتم‌های استپر */
+}
+body{background:var(--ui-bg);}
+
+/* ---------- سربرگ ---------- */
+header.top h1{color:var(--ui-ink);}
+header.top .brand .dot{background:var(--ui-amber);box-shadow:0 0 0 4px rgba(255,193,94,.28);}
+.badge{background:var(--ui-deep);color:var(--ui-amber);}
+
+/* ---------- پنل کناری (استپر) ---------- */
+.app-sidebar{
+  background:linear-gradient(180deg,var(--ui-mid),var(--ui-deep));
+  border-radius:18px;
+  padding:14px 10px 12px;
+  box-shadow:0 8px 24px rgba(39,73,92,.22);
+}
+/* فقط دسکتاپ: ستون عمودی چسبیده با عنوان آکادمی (روی موبایل استپر افقی و اسکرول‌پذیر style.css می‌ماند) */
+@media (min-width:901px){
+  .app-sidebar{align-self:flex-start;position:sticky;top:18px;}
+  .app-sidebar::before{
+    content:"آکادمی آموزشی لیان";
+    display:block;color:#ffd88f;font-size:11px;font-weight:800;letter-spacing:.3px;
+    padding:2px 10px 10px;border-bottom:1px solid rgba(255,255,255,.16);margin-bottom:8px;
+  }
+  .stepper{position:static;padding-top:0;padding-left:0;gap:3px;max-height:none;overflow:visible;}
+}
+.step-pill{border-radius:var(--r-sm);border-right:3px solid transparent;color:#d6e4e9;}
+.step-pill:hover{background:rgba(255,255,255,.10);color:#fff;}
+.step-pill.active{background:rgba(255,193,94,.20);color:#fff;border-right-color:var(--ui-amber);}
+.step-pill.active:hover{background:rgba(255,193,94,.26);}
+.step-pill.done{color:#bdeccf;}
+.step-pill.done::before{content:"✓ ";font-weight:800;}
+.step-pill.personalize-tab{color:#ffe3a9;}
+.step-pill.personalize-tab.active{background:rgba(255,193,94,.20);color:#fff0cc;border-right-color:var(--ui-amber);}
+.step-pill.personalize-tab:hover{background:rgba(255,255,255,.10);}
+
+/* ---------- کارت‌ها و فرم ---------- */
+.card{border-radius:var(--r-lg);border:1px solid var(--ui-line);box-shadow:0 4px 14px rgba(39,73,92,.07);}
+.card h2{color:var(--ui-ink);}
+.card h2 .num{background:var(--ui-amber);color:var(--ui-deep);border-radius:9px;width:26px;height:26px;font-weight:800;}
+.field label{color:var(--ui-ink);}
+.field input[type=text],.field input[type=number],.field input[type=date],.field textarea{
+  border:1px solid var(--ui-field);border-radius:var(--r-sm);
+}
+.field input:focus,.field textarea:focus{border-color:var(--ui-mid);box-shadow:0 0 0 3px rgba(255,193,94,.40);}
+.field.invalid input,.field.invalid input[type=text]{border-color:var(--err)!important;}
+.grad-sum-check .error-msg{border-radius:var(--r-sm);}
+
+/* ---------- جدول‌ها (گرد‌گوشه) ---------- */
+.sample-table{
+  border-collapse:separate;border-spacing:0;
+  border:1px solid var(--ui-line);border-radius:var(--r-md);overflow:hidden;
+}
+.sample-table th,.sample-table td{border:none;border-bottom:1px solid var(--ui-line);border-inline-end:1px solid var(--ui-line);}
+.sample-table tr > *:last-child{border-inline-end:none;}
+.sample-table tr:last-child > td{border-bottom:none;}
+.sample-table th{background:var(--ui-head);color:#fff;}
+.sample-table tr td:first-child{background:#f1f6f7;}
+.sample-table td input:focus{border-radius:8px;}
+
+/* ---------- باکس‌ها ---------- */
+.live-box{
+  background:var(--ui-deep);border:none;border-radius:var(--r-md);padding:14px 16px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);
+}
+.live-box .lv-title{color:var(--ui-amber);}
+.live-box .lv-row{border-top:1px dashed rgba(255,255,255,.18);}
+.live-box .lv-label{color:#b9d0d8;}
+.live-box .lv-value{color:var(--ui-amber);font-size:16px;text-shadow:0 0 10px rgba(255,193,94,.30);}
+.choice{border-radius:var(--r-md);}
+/* گزینه‌ی «فراخوانی اطلاعات اولیه‌ی آسفالت»: کادر سبز بسیار ملایم برای تمایز بصری (هم‌رنگ دکمه‌ی «ذخیره‌ی اطلاعات اولیه»)؛
+   وقتی انتخاب شد همان حالت انتخاب (کهربایی) سایر گزینه‌ها را می‌گیرد */
+.choice.choice-report{
+  border-color:#a9d3bc;
+  background:#f6fbf8;
+  box-shadow:0 0 0 3px rgba(46,125,91,.08);
+}
+.choice.choice-report .title{color:#24664a;}
+.choice.choice-report:hover{border-color:#2e7d5b;}
+.choice.choice-report.selected{
+  border-color:var(--amber);
+  background:var(--amber-soft);
+  box-shadow:0 0 0 3px rgba(255,193,94,.25);
+}
+.choice.choice-report.selected .title{color:var(--ink);}
+body[data-theme="dark"] .choice.choice-report .title{color:#8fdaa9;}
+body[data-theme="dark"] .choice.choice-report.selected .title{color:#a5e6b8;}
+.confirm-box{border-radius:var(--r-md);}
+.formula-card{border-radius:var(--r-md);}
+.formula-box{border-radius:var(--r-sm);}
+.formula-params{border-radius:var(--r-sm);}
+
+/* ---------- دکمه‌ها ---------- */
+button,.btn-ghost{border-radius:var(--r-sm);}
+.btn-primary{background:var(--ui-mid);color:#fff;}
+.btn-primary:hover{background:var(--ui-deep);}
+.btn-primary:disabled{background:#dbe6ea;color:#9fb3bb;}
+/* بازخورد حرکتی یکپارچه برای دکمه‌ها و کارت‌های قابل انتخاب */
+button:not(:disabled),.choice,.step-pill{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,background-color .18s ease;}
+button:not(:disabled):hover,.choice:hover{transform:translateY(-2px);box-shadow:0 5px 13px rgba(47,85,104,.17);}
+button:not(:disabled):active,.choice:active{transform:translateY(0) scale(.985);box-shadow:0 1px 3px rgba(47,85,104,.14);}
+button:focus-visible,.choice:focus-visible,.step-pill:focus-visible{outline:3px solid var(--ui-amber);outline-offset:2px;}
+@media (prefers-reduced-motion:reduce){
+  button:not(:disabled),.choice,.step-pill{transition:none!important;}
+  button:not(:disabled):hover,.choice:hover,button:not(:disabled):active,.choice:active{transform:none;}
+}
+.export-bar .btn-amber[style*="2196F3"]:not(:disabled){background:var(--ui-mid)!important;}   /* دکمه‌ی «دریافت تصویر» که رنگ آبی ثابتِ inline داشت */
+.export-bar .btn-amber[style*="2196F3"]:not(:disabled):hover{background:var(--ui-deep)!important;}
+
+/* ---------- موبایل / تبلت: پنل کناری تبدیل به نوار افقی گرد و اسکرول‌پذیر ---------- */
+@media (max-width:900px){
+  .app-sidebar{position:sticky;top:0;z-index:40;border-radius:var(--r-md);padding:8px 8px;align-self:stretch;}
+  .stepper{background:transparent;backdrop-filter:none;border-bottom:none;margin:0;padding:2px;overflow-x:auto;overflow-y:hidden;}
+  .step-pill{border-radius:var(--r-sm);border-right:none;border-bottom:3px solid transparent;}
+  .step-pill.active,.step-pill.personalize-tab.active{border-right-color:transparent;border-bottom-color:var(--ui-amber);}
+  .card{border-radius:var(--r-md);}
+}
+
+/* ---------- پنل محدوده‌ی پذیرش ----------
+   زمینه بر مبنای رنگ پس‌زمینه‌ی فعال رابط کاربری، ۱۰٪ روشن‌تر محاسبه می‌شود. */
+.acc-panel{
+  background:color-mix(in srgb,var(--bg) 90%, white 10%);
+  border:1.5px solid color-mix(in srgb,var(--line) 72%, white 28%);
+  border-radius:var(--r-md);
+  padding:12px 14px;margin:8px 0 20px;
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--amber) 10%, transparent);
+}
+.acc-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-bottom:8px;}
+.acc-head b{color:var(--ui-ink);font-size:13.5px;}
+.acc-sub{font-size:11.5px;color:var(--ink-soft);line-height:1.8;}
+.acc-row{
+  display:grid;grid-template-columns:minmax(180px,2fr) 120px 120px;
+  gap:6px 10px;align-items:end;padding:8px 8px;border-top:1px dashed color-mix(in srgb,var(--line) 75%, transparent);
+}
+.acc-row:first-of-type{border-top:none;}
+.acc-name{font-weight:700;color:var(--ui-ink);font-size:12.5px;align-self:center;}
+.acc-f label{font-size:10.5px;margin-bottom:2px;}
+.acc-f input{padding:6px 9px;font-size:13px;text-align:right;background:var(--ui-field);color:var(--ink);}
+.acc-f{margin:0;}
+.acc-f input::placeholder{color:#9db0b8;opacity:1;}
+.acc-src{margin-top:8px;font-size:11.5px;color:var(--ink-soft);}
+.acc-src summary{cursor:pointer;color:var(--ui-mid);}
+.acc-src ul{margin:6px 18px 0;padding:0;line-height:1.9;}
+@media (max-width:640px){
+  .acc-row{grid-template-columns:1fr 1fr;}
+  .acc-name{grid-column:1 / -1;}
+}
+
+/* ---------- تب «تطبیق با معیارها» ---------- */
+.cf-summary{border-radius:var(--r-md);padding:12px 16px;font-weight:700;font-size:14px;margin:6px 0 14px;}
+.cf-summary.cf-ok{background:#e9f6ee;border:1.5px solid #9fd0b3;color:#1e6b43;}
+.cf-summary.cf-bad{background:#fdecea;border:1.5px solid #e29a90;color:#a5321f;}
+.cf-group{margin:0 0 14px;}
+.cf-group-title{font-weight:800;color:var(--ui-ink);font-size:13.5px;margin:0 0 6px;display:flex;align-items:center;gap:8px;}
+.cf-go{font-family:inherit;font-size:11.5px;font-weight:600;border:1px solid var(--ui-line);background:#fff;color:var(--ui-mid);
+  border-radius:999px;padding:3px 12px;cursor:pointer;}
+.cf-go:hover{border-color:var(--ui-mid);}
+.cf-item{background:#fff4f2;border:1px solid #f0b9b2;border-right:4px solid var(--err);border-radius:var(--r-sm);
+  padding:8px 12px;margin:0 0 6px;font-size:13px;line-height:1.9;color:#5a1d16;}
+.cf-h{font-weight:800;color:var(--ui-ink);font-size:13.5px;margin:18px 0 8px;}
+.cf-tbl{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--ui-line);border-radius:var(--r-md);overflow:hidden;font-size:12.5px;}
+.cf-tbl th{background:var(--ui-mid);color:#fff;padding:7px 8px;font-weight:700;text-align:center;}
+.cf-tbl td{padding:6px 8px;border-top:1px solid var(--ui-line);text-align:center;}
+.cf-tbl td.cf-name{text-align:right;font-weight:600;}
+.cf-tbl tr.cf-row-bad td{background:#fdecea;color:var(--err);font-weight:700;}
+.cf-tbl tr.cf-row-ok td.cf-st{color:var(--ok);font-weight:700;}
+.cf-tbl td.cf-na{color:var(--ink-soft);}
+.cf-tblwrap{overflow-x:auto;}
+.cf-vals td:last-child{width:130px;font-weight:700;color:var(--ui-ink);}
+.cf-gmm{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 10px;}
+.cf-gmm div{background:#f4f8fa;border:1px solid var(--ui-line);border-radius:var(--r-sm);padding:8px 10px;text-align:center;font-size:12px;color:var(--ink-soft);}
+.cf-gmm b{display:block;font-size:16px;color:var(--ui-ink);margin-top:2px;}
+@media (max-width:640px){ .cf-gmm{grid-template-columns:1fr;} }
+
