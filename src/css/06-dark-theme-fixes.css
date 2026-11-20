@@ -56,38 +56,28 @@ body[data-theme="dark"] .marshall-choice-group .choice.selected{
   border-color:#d39a5e;
 }
 
-/* ۶) رنگ ثابت دکمه‌های فعال در صفحه «شروع» بر اساس پالت برنامه */
-.choice.start-choice-top.selected{
+/* ۶) رنگ ثابت و یکسان دکمه‌های فعال در صفحه «شروع» (معادل ردیف اول) + تراز دقیق دو ردیف */
+.choice-group.start-top-choices{
+  margin-bottom:10px;
+}
+.choice.start-choice-top.selected,
+.choice.start-choice-bottom.selected{
   border:2px solid var(--ui-deep) !important;
   background:#dce9ef !important;
   box-shadow:0 0 0 3px rgba(47,85,104,.18) !important;
 }
-.choice.start-choice-top.selected .title{
+.choice.start-choice-top.selected .title,
+.choice.start-choice-bottom.selected .title{
   color:var(--ui-deep) !important;
 }
-body[data-theme="dark"] .choice.start-choice-top.selected{
+body[data-theme="dark"] .choice.start-choice-top.selected,
+body[data-theme="dark"] .choice.start-choice-bottom.selected{
   border:2px solid #8bc9e5 !important;
   background:#2b4a59 !important;
   box-shadow:0 0 0 3px rgba(139,201,229,.20) !important;
 }
-body[data-theme="dark"] .choice.start-choice-top.selected .title{
-  color:#ffffff !important;
-}
-
-.choice.start-choice-bottom.selected{
-  border:2px solid var(--amber) !important;
-  background:var(--amber-soft) !important;
-  box-shadow:0 0 0 3px rgba(168,106,46,.18) !important;
-}
-.choice.start-choice-bottom.selected .title{
-  color:#7a4a1c !important;
-}
-body[data-theme="dark"] .choice.start-choice-bottom.selected{
-  border:2px solid #d39a5e !important;
-  background:#493a2c !important;
-  box-shadow:0 0 0 3px rgba(211,154,94,.22) !important;
-}
+body[data-theme="dark"] .choice.start-choice-top.selected .title,
 body[data-theme="dark"] .choice.start-choice-bottom.selected .title{
-  color:#ffd88f !important;
+  color:#ffffff !important;
 }
 

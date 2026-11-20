@@ -110,12 +110,6 @@ function buildReportSheet(r){
   ]));
 
   table.appendChild(el("tr", {}, [
-      td("label", "Gsb (طرح)"), td("val", fmt(r.gsbDesign, 3)),
-      td("label", "Gse (محاسباتی)"), td("val", fmt(r.Gse, OUTPUT_DEC.gse)),
-      td("label", "Gmm (محاسباتی)"), td("val", fmt(r.GmmEstimated, OUTPUT_DEC.gmm))
-  ]));
-
-  table.appendChild(el("tr", {}, [
       td("label", "قیر بهینه طرح"), td("val", fmt(num(S.pbOptimum), 2) + " %"),
       td("label", "Gmm رایس (نمونه)"), td("val", hasVal(S.gmm) ? fmt(num(S.gmm), OUTPUT_DEC.gmm) : "—"),
       td("label", "Gagg (گزارش)"), td("val", fmt(r.F19, OUTPUT_DEC.gse))

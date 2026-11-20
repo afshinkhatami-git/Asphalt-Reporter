@@ -44,5 +44,16 @@ function renderStep2(card){
     spans.gse.textContent = accLiveText("dgse", r, "sg");   // accept.js
     if(spans.gmbWax) spans.gmbWax.textContent = liveFmt(r.GmbWaxReport, OUTPUT_DEC.gmb);
   });
+  const live2 = liveResultBox("پارامترهای محاسباتی طرح (برخط)", [
+    {id:"gsbD", label:"Gsb طرح"},
+    {id:"gseC", label:"Gse محاسباتی"},
+    {id:"gmmC", label:"Gmm محاسباتی"}
+  ]);
+  card.appendChild(live2);
+  bindLiveBox(card, live2, (r, spans)=>{
+    spans.gsbD.textContent = liveFmt(r.gsbDesign, 3);
+    spans.gseC.textContent = liveFmt(r.Gse, OUTPUT_DEC.gse);
+    spans.gmmC.textContent = (_pbReady() && r.K7>0) ? liveFmt(r.GmmEstimated, OUTPUT_DEC.gmm) : "—";
+  });
   addAcceptPanel(card, "sg");   // محدوده‌ی پذیرش (بالای تب) — accept.js
 }

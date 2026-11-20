@@ -2,11 +2,25 @@
 function renderStepWelcome(card){
   card.appendChild(el("h2",{},[el("span",{class:"num"},"3"),"شروع کار"]));
   card.appendChild(el("div",{class:"desc"},"شماره نمونه را وارد کنید و سپس مشخص کنید گزارش رسمی می‌خواهید یا فقط آسفالت را بررسی می‌کنید. برای گزارش رسمی، شماره کاربر و صحت شماره نمونه الزامی است."));
+
+  // ۱) شماره نمونه و شماره کاربر در یک سطر و با کادرهای مجزا
+  const topIdsRow = el("div",{class:"grid",style:"margin-bottom:14px;"});
   const sampleField = makeField("sampleNo","شماره نمونه",{hint:"ورود شماره نمونه یکتا و صحیح بر عهده کاربر است"});
   const sampleInp = sampleField.querySelector("input");
-  card.appendChild(sampleField);
 
-  // ردیف اول: ۳ دکمه هم‌ارز (فقط یکی فعال و ثابت می‌ماند)
+  const userField = el("div",{class:"field"});
+  userField.appendChild(el("label",{},["شماره کاربر",el("span",{class:"hint"},"کد اختصاص‌یافته به کاربر")]));
+  const userInput = el("input",{type:"text",value:S.userCode||"",placeholder:"مثلاً 001",maxlength:"20"});
+  if(S.userCode) userInput.readOnly = true;
+  userField._validator = ()=>S.archivedReport||S.reportMode==="archived"||S.reportMode==="review"||/^[A-Za-z0-9-]{1,20}$/.test(toLatinDigits(userInput.value).trim()) ? "" : "شماره کاربر باید ۱ تا ۲۰ نویسه و شامل حروف لاتین، عدد یا خط تیره باشد.";
+  userField.appendChild(userInput);
+  userField.appendChild(el("div",{class:"error-msg"},"شماره کاربر باید ۱ تا ۲۰ نویسه و شامل حروف لاتین، عدد یا خط تیره باشد."));
+
+  topIdsRow.appendChild(sampleField);
+  topIdsRow.appendChild(userField);
+  card.appendChild(topIdsRow);
+
+  // ۲) ردیف اول دکمه‌ها: ۳ دکمه هم‌ارز (فقط یکی فعال و ثابت می‌ماند)
   const modeGroup = el("div",{class:"choice-group start-top-choices"});
   const optLoadReport = el("div",{class:"choice start-choice-top"+(S.startChoice==="loadReport"?" selected":"")},[
     el("div",{class:"title"},"فراخوان گزارش آرشیوشده"),
@@ -23,25 +37,50 @@ function renderStepWelcome(card){
   modeGroup.appendChild(optLoadReport); modeGroup.appendChild(officialMode); modeGroup.appendChild(reviewMode);
   card.appendChild(modeGroup);
 
-  const modeField = el("div",{class:"field",style:"margin-top:8px;"});
+  // ۳) ردیف دوم دکمه‌ها: دقیقاً زیر دکمه‌های ردیف اول و هم‌تراز با آن‌ها
+  const cg = el("div",{class:"choice-group start-bottom-choices"});
+  const optNew = el("div",{class:"choice start-choice-bottom"+(S.designChoice==="new"?" selected":"")},[
+    el("div",{class:"title"},"ورود اطلاعات طرح جدید"),
+    el("div",{class:"desc2"},"تعریف یک طرح اختلاط تازه در مرحله بعد")
+  ]);
+  const optLoad = el("div",{class:"choice start-choice-bottom"+(S.designChoice==="load"?" selected":"")},[
+    el("div",{class:"title"},"فراخوان طرح ذخیره‌شده"),
+    el("div",{class:"desc2"},"انتخاب فایل JSON طرح اختلاط که قبلاً ذخیره کرده‌اید")
+  ]);
+  const optTech = el("div",{class:"choice start-choice-bottom"+(S.techLoaded?" selected":"")},[
+    el("div",{class:"title"},"دریافت اطلاعات تکنسین QC"),
+    el("div",{class:"desc2"},"بارگذاری فایل JSON برنامه تکنسین؛ اطلاعات خام آزمایش به فرم‌های گزارشگر منتقل می‌شود")
+  ]);
+  cg.appendChild(optNew); cg.appendChild(optLoad); cg.appendChild(optTech);
+  card.appendChild(cg);
+
+  const modeField = el("div",{class:"field",style:"margin-top:6px;"});
   modeField._validator = ()=>S.archivedReport||S.reportMode ? "" : "لطفاً نوع استفاده را انتخاب کنید.";
   modeField.appendChild(el("div",{class:"error-msg"},"لطفاً نوع استفاده را انتخاب کنید."));
   card.appendChild(modeField);
 
-  const serialSettings = el("div",{class:"field",style:"margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:10px;"});
-  serialSettings.appendChild(el("div",{style:"font-weight:700;margin-bottom:8px;"},"مشخصات شماره‌گذاری گزارش رسمی"));
-  const userLabel = el("label",{style:"display:block;margin:8px 0 4px;"},"شماره کاربر");
-  const userInput = el("input",{type:"text",value:S.userCode||"",placeholder:"کد اختصاص‌یافته به کاربر (مثلاً 001)",maxlength:"20",style:"width:100%;padding:9px;border:1px solid var(--line);border-radius:7px;font:inherit;"});
-  if(S.userCode) userInput.readOnly = true;
-  userLabel.appendChild(userInput); serialSettings.appendChild(userLabel);
-  const userField = el("div",{class:"field"});
-  userField._validator = ()=>S.archivedReport||S.reportMode==="archived"||S.reportMode==="review"||/^[A-Za-z0-9-]{1,20}$/.test(toLatinDigits(userInput.value).trim()) ? "" : "شماره کاربر باید ۱ تا ۲۰ نویسه و شامل حروف لاتین، عدد یا خط تیره باشد.";
-  userField.appendChild(el("div",{class:"error-msg"},"شماره کاربر باید ۱ تا ۲۰ نویسه و شامل حروف لاتین، عدد یا خط تیره باشد."));
-  serialSettings.appendChild(userField);
+  const startField = el("div",{class:"field",style:"margin-top:4px;"});
+  startField._key = "startChoice";
+  startField._required = true;
+  startField.appendChild(el("div",{class:"error-msg"},"لطفاً یکی از گزینه‌های بالا را برای شروع انتخاب کنید."));
+  card.appendChild(startField);
 
-  const serialPreview = el("div",{style:"margin-top:10px;font-weight:700;color:var(--charcoal);direction:ltr;text-align:right;unicode-bidi:isolate;"},"");
+  const fileInput = el("input",{type:"file",accept:"application/json",style:"display:none;"});
+  const reportFileInput = el("input",{type:"file",accept:"application/json",style:"display:none;"});
+  const technicianFileInput = el("input",{type:"file",accept:"application/json",style:"display:none;"});
+  const loadMsg = el("div",{style:"font-size:12px;font-weight:600;margin-top:10px;color:var(--ink-soft);"},"");
+  card.appendChild(fileInput);
+  card.appendChild(reportFileInput);
+  card.appendChild(technicianFileInput);
+  card.appendChild(loadMsg);
+
+  // ۴) توضیحات، پیش‌نمایش شماره سریال (نارنجی و وسط‌چین) و تأیید مسئولیت در پایین دکمه‌ها
+  const serialSettings = el("div",{class:"field",style:"margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:10px;"});
+  serialSettings.appendChild(el("div",{style:"font-weight:700;margin-bottom:6px;"},"مشخصات شماره‌گذاری گزارش رسمی"));
+
+  const serialPreview = el("div",{style:"margin:10px 0;font-weight:800;font-size:14.5px;color:var(--amber);text-align:center;direction:ltr;unicode-bidi:isolate;"},"");
   serialSettings.appendChild(serialPreview);
-  serialSettings.appendChild(el("div",{style:"font-size:12px;color:var(--ink-soft);margin-top:6px;"},"فرمت شماره سریال: ASR_تاریخ_شماره کاربر_شماره طرح_شماره نمونه (مثال: ASR_14050821_001_024_143)"));
+  serialSettings.appendChild(el("div",{style:"font-size:12px;color:var(--ink-soft);margin-top:4px;"},"فرمت شماره سریال: ASR_تاریخ نمونه‌برداری_شماره کاربر_شماره طرح_شماره نمونه (مثال: ASR_14050821_001_024_143)"));
 
   const responsibilityBox=el("div",{style:"margin-top:12px;padding:12px;border:1px solid var(--ui-mid);border-radius:8px;background:var(--ui-deep);color:#f1f6f8;font-size:12px;line-height:1.9;"});
   responsibilityBox.appendChild(el("div",{style:"font-weight:700;color:#fff;margin-bottom:3px;"},"مسئولیت یکتایی شماره نمونه و شماره سریال"));
@@ -64,6 +103,12 @@ function renderStepWelcome(card){
     reviewMode.classList.toggle("selected", S.reportMode==="review" && S.startChoice!=="loadReport");
   }
 
+  function syncBottomRowClasses(){
+    optNew.classList.toggle("selected", S.designChoice==="new");
+    optLoad.classList.toggle("selected", S.designChoice==="load");
+    optTech.classList.toggle("selected", !!S.techLoaded);
+  }
+
   const refreshSerialPreview=()=>{
     S.userCode=toLatinDigits(userInput.value).trim();
     serialSettings.style.display="block";
@@ -80,6 +125,7 @@ function renderStepWelcome(card){
     const locked=S.reportMode==="review"||S.reportMode==="archived"||S.archivedReport||S.startChoice==="loadReport";
     const archiveLoaded=!!S.archivedReport;
     serialSettings.classList.toggle("start-serial-disabled",locked&&!archiveLoaded);
+    userField.classList.toggle("start-serial-disabled",locked&&!archiveLoaded);
     userInput.disabled=locked;
     responsibilityCheck.disabled=locked||S.rawSaved;
   }
@@ -100,44 +146,6 @@ function renderStepWelcome(card){
   responsibilityCheck.addEventListener("change",()=>{S.serialResponsibilityConfirmed=responsibilityCheck.checked;});
   refreshSerialPreview();
 
-  // ردیف دوم: دو دکمه اول هم‌ارز (طرح جدید / طرح ذخیره‌شده) + دکمه سوم مستقل (دریافت اطلاعات تکنسین)
-  const cg = el("div",{class:"choice-group start-bottom-choices"});
-  const optNew = el("div",{class:"choice start-choice-bottom"+(S.designChoice==="new"?" selected":"")},[
-    el("div",{class:"title"},"ورود اطلاعات طرح جدید"),
-    el("div",{class:"desc2"},"تعریف یک طرح اختلاط تازه در مرحله بعد")
-  ]);
-  const optLoad = el("div",{class:"choice start-choice-bottom"+(S.designChoice==="load"?" selected":"")},[
-    el("div",{class:"title"},"فراخوان طرح ذخیره‌شده"),
-    el("div",{class:"desc2"},"انتخاب فایل JSON طرح اختلاط که قبلاً ذخیره کرده‌اید")
-  ]);
-  const optTech = el("div",{class:"choice start-choice-bottom"+(S.techLoaded?" selected":"")},[
-    el("div",{class:"title"},"دریافت اطلاعات تکنسین QC"),
-    el("div",{class:"desc2"},"بارگذاری فایل JSON برنامه تکنسین؛ اطلاعات خام آزمایش به فرم‌های گزارشگر منتقل می‌شود")
-  ]);
-  cg.appendChild(optNew); cg.appendChild(optLoad); cg.appendChild(optTech);
-  card.appendChild(cg);
-
-  const startField = el("div",{class:"field",style:"margin-top:8px;"});
-  startField._key = "startChoice";
-  startField._required = true;
-  startField.appendChild(el("div",{class:"error-msg"},"لطفاً یکی از گزینه‌های بالا را برای شروع انتخاب کنید."));
-  card.appendChild(startField);
-
-  const fileInput = el("input",{type:"file",accept:"application/json",style:"display:none;"});
-  const reportFileInput = el("input",{type:"file",accept:"application/json",style:"display:none;"});
-  const technicianFileInput = el("input",{type:"file",accept:"application/json",style:"display:none;"});
-  const loadMsg = el("div",{style:"font-size:12px;font-weight:600;margin-top:12px;color:var(--ink-soft);"},"");
-  card.appendChild(fileInput);
-  card.appendChild(reportFileInput);
-  card.appendChild(technicianFileInput);
-  card.appendChild(loadMsg);
-
-  function syncBottomRowClasses(){
-    optNew.classList.toggle("selected", S.designChoice==="new");
-    optLoad.classList.toggle("selected", S.designChoice==="load");
-    optTech.classList.toggle("selected", !!S.techLoaded);
-  }
-
   function persistUserCodeIfValid(){
     S.userCode=toLatinDigits(userInput.value).trim();
     try{
@@ -153,6 +161,7 @@ function renderStepWelcome(card){
     S.startChoice = choiceVal;
     syncBottomRowClasses();
     updateStartSerialControls();
+    refreshSerialPreview();
     startField.classList.remove("invalid");
   }
 
@@ -231,8 +240,6 @@ function renderStepWelcome(card){
       S.techLoaded = false;
       S.designChoice = "";
       S.startChoice = "loadReport";
-  S.designChoice = "";
-  S.techLoaded = false;
       syncTopRowClasses();
       syncBottomRowClasses();
       updateStartSerialControls();

@@ -173,7 +173,7 @@ function applyFullReportData(o){
 }
 
 /* ===================== تاریخ شمسی و سریال گزارش =====================
-   تاریخ شماره سریال از «تاریخ گزارش» گرفته می‌شود؛ تاریخ نامعتبر/خالی به تاریخ امروز شمسی برمی‌گردد. */
+   تاریخ شماره سریال از «تاریخ نمونه‌برداری» گرفته می‌شود؛ تا وارد نشود (یا نامعتبر باشد) «DATE» نمایش داده می‌شود. */
 function gregorianToJalali(gy, gm, gd){
   const gdm = [0,31,59,90,120,151,181,212,243,273,304,334];
   const gy2 = gm > 2 ? gy + 1 : gy;
@@ -196,8 +196,9 @@ function todayShamsi(){
 
 /* تاریخ شمسی به‌صورت فشرده: 14050816 */
 function shamsiDateCompact(){
-  const m = /^(\d{4})\/(\d{1,2})\/(\d{1,2})$/.exec(String(S.reportDate || "").trim());
-  const parts = m ? [+m[1], +m[2], +m[3]] : todayShamsi().split("/").map(Number);
+  const m = /^(\d{4})\/(\d{1,2})\/(\d{1,2})$/.exec(toLatinDigits(String(S.sampleDate || "")).trim());
+  if(!m) return "DATE";
+  const parts = [+m[1], +m[2], +m[3]];
   return String(parts[0]) + String(parts[1]).padStart(2,"0") + String(parts[2]).padStart(2,"0");
 }
 function sanitizeSerialToken(val, fallback="---"){
@@ -255,8 +256,16 @@ function saveJsonWithPicker(text, fileName, pickerId){
   if(typeof window.showSaveFilePicker === "function"){
     return saveAsFile().catch(e=>e&&e.name==="AbortError"?{ok:false,cancelled:true}:({ok:false,error:e}));
   }
-  alert("این مرورگر امکان انتخاب مستقیم پوشه یا نشانی ذخیره‌سازی را ارائه نمی‌کند. برای تعیین محل ذخیره، برنامه را در نسخه دسکتاپ Chrome یا Edge و از یک مبدأ امن (HTTPS یا localhost) باز کنید.");
-  return Promise.resolve({ok:false,unsupported:true});
+  const blob = new Blob([text], {type:"application/json;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = fileName;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 1500);
+  return Promise.resolve({ok:true, picked:false, name:fileName});
 }
 
 /* ۱) ذخیره‌ی طرح اختلاط */

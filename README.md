@@ -27,7 +27,7 @@ python3 build.py
 برای اطمینان از اینکه بیلد با یک فایل مرجع بایت‌به‌بایت یکی است:
 
 ```
-python3 build.py --check legacy/Asphalt_Reporter-23.html
+python3 build.py --check legacy/Asphalt_Reporter-26.html
 ```
 
 ## نکات مهم
